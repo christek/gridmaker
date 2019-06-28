@@ -14,10 +14,12 @@ class GridContainerNew extends React.Component {
     super(props);
     this.state = {
       listItems: this.props.listItems,
-      colCount: 4
+      colCount: 4,
+      gridGap: 0
     };
     this.addItem = this.addItem.bind(this);
     this.incrColumns = this.incrColumns.bind(this);
+    this.incrGap = this.incrGap.bind(this);
   }
 
   addItem() {
@@ -25,9 +27,15 @@ class GridContainerNew extends React.Component {
     foo.push(Math.floor(Math.random() * 10));
     this.setState({ listItems: foo });
   }
+
   incrColumns() {
     let foo = this.state.colCount + 1;
     this.setState({ colCount: foo });
+  }
+
+  incrGap() {
+    let foo = this.state.gridGap + 1;
+    this.setState({ gridGap: foo });
   }
 
   render() {
@@ -36,14 +44,25 @@ class GridContainerNew extends React.Component {
     });
     let foo = "";
     _.times(this.state.colCount, () => {
-      console.log("times");
       foo += " 100px";
     });
     return (
       <div>
-        <input type="button" value="add element" onClick={this.addItem} />
-        <input type="button" value="+" onClick={this.incrColumns} />
-        <RedAnchor className="container" style={{ gridTemplateColumns: foo }}>
+        <input
+          key="1"
+          type="button"
+          value="add elements"
+          onClick={this.addItem}
+        />
+        <input key="2" type="button" value="cols+" onClick={this.incrColumns} />
+        <input key="3" type="button" value="gap+" onClick={this.incrGap} />
+        <RedAnchor
+          className="container"
+          style={{
+            gridTemplateColumns: foo,
+            gridGap: this.state.gridGap
+          }}
+        >
           {this.state.listItems.map(number => (
             <div key={number} className="box">
               {number}
