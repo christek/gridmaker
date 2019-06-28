@@ -15,11 +15,13 @@ class GridContainerNew extends React.Component {
     this.state = {
       listItems: this.props.listItems,
       colCount: 4,
-      gridGap: 0
+      gridGap: 0,
+      itemWidth: 100
     };
     this.addItem = this.addItem.bind(this);
     this.incrColumns = this.incrColumns.bind(this);
     this.incrGap = this.incrGap.bind(this);
+    this.incrWidth = this.incrWidth.bind(this);
   }
 
   addItem() {
@@ -38,13 +40,16 @@ class GridContainerNew extends React.Component {
     this.setState({ gridGap: foo });
   }
 
+  incrWidth() {
+    let foo = this.state.itemWidth + 1;
+    this.setState({ itemWidth: foo });
+  }
+
   render() {
-    const RedAnchor = styled("div", {
-      color: "red"
-    });
+    const RedAnchor = styled("div");
     let foo = "";
     _.times(this.state.colCount, () => {
-      foo += " 100px";
+      foo += " " + this.state.itemWidth + "px";
     });
     return (
       <div>
@@ -56,6 +61,7 @@ class GridContainerNew extends React.Component {
         />
         <input key="2" type="button" value="cols+" onClick={this.incrColumns} />
         <input key="3" type="button" value="gap+" onClick={this.incrGap} />
+        <input key="3" type="button" value="width+" onClick={this.incrWidth} />
         <RedAnchor
           className="container"
           style={{
