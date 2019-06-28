@@ -1,2 +1,0 @@
-# gridmaker
-Created with CodeSandbox
