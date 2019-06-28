@@ -9,7 +9,15 @@ const numbers = [1, 2, 3, 4, 5, 6];
 
 // https://gridbyexample.com/examples/example1/
 
-class GridContainerNew extends React.Component {
+function Square(props) {
+  return (
+    <div key={props.number} className="box">
+      {props.number}
+    </div>
+  );
+}
+
+class GridApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,31 +33,31 @@ class GridContainerNew extends React.Component {
   }
 
   addItem() {
-    let foo = this.state.listItems;
+    let listItems = this.state.listItems;
     foo.push(Math.floor(Math.random() * 10));
-    this.setState({ listItems: foo });
+    this.setState({ listItems: listItems });
   }
 
   incrColumns() {
-    let foo = this.state.colCount + 1;
-    this.setState({ colCount: foo });
+    let colCount = this.state.colCount + 1;
+    this.setState({ colCount: colCount });
   }
 
   incrGap() {
-    let foo = this.state.gridGap + 1;
-    this.setState({ gridGap: foo });
+    let gridGap = this.state.gridGap + 1;
+    this.setState({ gridGap: gridGap });
   }
 
   incrWidth() {
-    let foo = this.state.itemWidth + 1;
-    this.setState({ itemWidth: foo });
+    let itemWidth = this.state.itemWidth + 1;
+    this.setState({ itemWidth: itemWidth });
   }
 
   render() {
-    const RedAnchor = styled("div");
-    let foo = "";
+    const GridContainer = styled("div");
+    let gridTemplateColumns = "";
     _.times(this.state.colCount, () => {
-      foo += " " + this.state.itemWidth + "px";
+      gridTemplateColumns += " " + this.state.itemWidth + "px";
     });
     return (
       <div>
@@ -61,20 +69,18 @@ class GridContainerNew extends React.Component {
         />
         <input key="2" type="button" value="cols+" onClick={this.incrColumns} />
         <input key="3" type="button" value="gap+" onClick={this.incrGap} />
-        <input key="3" type="button" value="width+" onClick={this.incrWidth} />
-        <RedAnchor
+        <input key="4" type="button" value="width+" onClick={this.incrWidth} />
+        <GridContainer
           className="container"
           style={{
-            gridTemplateColumns: foo,
+            gridTemplateColumns: gridTemplateColumns,
             gridGap: this.state.gridGap
           }}
         >
           {this.state.listItems.map(number => (
-            <div key={number} className="box">
-              {number}
-            </div>
+            <Square number={number} />
           ))}
-        </RedAnchor>
+        </GridContainer>
       </div>
     );
   }
@@ -83,7 +89,7 @@ class GridContainerNew extends React.Component {
 function App() {
   return (
     <div className="App">
-      <GridContainerNew listItems={numbers} />
+      <GridApp listItems={numbers} />
     </div>
   );
 }
