@@ -45,7 +45,9 @@ class GridContainerNew extends React.Component {
         <input type="button" value="+" onClick={this.incrColumns} />
         <RedAnchor className="container" style={{ gridTemplateColumns: foo }}>
           {this.state.listItems.map(number => (
-            <div className="box">{number}</div>
+            <div key={number} className="box">
+              {number}
+            </div>
           ))}
         </RedAnchor>
       </div>
