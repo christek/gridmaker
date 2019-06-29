@@ -13,13 +13,19 @@ class GridElement extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gridColumnStart: 0
+      gridColumnStart: 0,
+      gridColumnEnd: 0
     };
     this.handleGridColumnStart = this.handleGridColumnStart.bind(this);
+    this.handleGridColumnEnd = this.handleGridColumnEnd.bind(this);
   }
 
   handleGridColumnStart(event) {
     this.setState({ gridColumnStart: event.target.value });
+  }
+
+  handleGridColumnEnd(event) {
+    this.setState({ gridColumnEnd: event.target.value });
   }
 
   render() {
@@ -29,13 +35,19 @@ class GridElement extends React.Component {
         key={this.props.number}
         className="box"
         style={{
-          gridColumnStart: this.state.gridColumnStart
+          gridColumnStart: this.state.gridColumnStart,
+          gridColumnEnd: this.state.gridColumnEnd
         }}
       >
         <input
           type="text"
           value={this.state.gridColumnStart}
           onChange={this.handleGridColumnStart}
+        />
+        <input
+          type="text"
+          value={this.state.gridColumnEnd}
+          onChange={this.handleGridColumnEnd}
         />
         {this.props.number}
       </GridElement>
