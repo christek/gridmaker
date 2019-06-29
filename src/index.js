@@ -13,12 +13,7 @@ class GridElement extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listItems: this.props.listItems,
-      colCount: 4,
-      rowCount: 4,
-      gridGap: 0,
-      itemWidth: 100,
-      itemHeight: 100
+      gridColumnStart: 0
     };
     this.handleGridColumnStart = this.handleGridColumnStart.bind(this);
   }
@@ -34,10 +29,14 @@ class GridElement extends React.Component {
         key={this.props.number}
         className="box"
         style={{
-          gridColumnStart: 0
+          gridColumnStart: this.state.gridColumnStart
         }}
       >
-        <input type="text" value="0" onChange={this.handleGridColumnStart} />
+        <input
+          type="text"
+          value={this.state.gridColumnStart}
+          onChange={this.handleGridColumnStart}
+        />
         {this.props.number}
       </GridElement>
     );
