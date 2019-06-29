@@ -34,7 +34,7 @@ class GridApp extends React.Component {
 
   addItem() {
     let listItems = this.state.listItems;
-    foo.push(Math.floor(Math.random() * 10));
+    listItems.push(Math.floor(Math.random() * 10));
     this.setState({ listItems: listItems });
   }
 
