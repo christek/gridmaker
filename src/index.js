@@ -10,10 +10,17 @@ const numbers = [1, 2, 3, 4, 5, 6];
 // https://gridbyexample.com/examples/example1/
 
 function Square(props) {
+  const GridElement = styled("div");
   return (
-    <div key={props.number} className="box">
+    <GridElement
+      key={props.number}
+      className="box"
+      style={{
+        gridColumnStart: 0
+      }}
+    >
       {props.number}
-    </div>
+    </GridElement>
   );
 }
 
