@@ -9,19 +9,39 @@ const numbers = [1, 2, 3, 4, 5, 6];
 
 // https://gridbyexample.com/examples/example1/
 
-function Square(props) {
-  const GridElement = styled("div");
-  return (
-    <GridElement
-      key={props.number}
-      className="box"
-      style={{
-        gridColumnStart: 0
-      }}
-    >
-      {props.number}
-    </GridElement>
-  );
+class GridElement extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listItems: this.props.listItems,
+      colCount: 4,
+      rowCount: 4,
+      gridGap: 0,
+      itemWidth: 100,
+      itemHeight: 100
+    };
+    this.handleGridColumnStart = this.handleGridColumnStart.bind(this);
+  }
+
+  handleGridColumnStart(event) {
+    this.setState({ gridColumnStart: event.target.value });
+  }
+
+  render() {
+    const GridElement = styled("div");
+    return (
+      <GridElement
+        key={this.props.number}
+        className="box"
+        style={{
+          gridColumnStart: 0
+        }}
+      >
+        <input type="text" value="0" onChange={this.handleGridColumnStart} />
+        {this.props.number}
+      </GridElement>
+    );
+  }
 }
 
 class GridApp extends React.Component {
@@ -116,7 +136,7 @@ class GridApp extends React.Component {
           }}
         >
           {this.state.listItems.map(number => (
-            <Square number={number} />
+            <GridElement number={number} />
           ))}
         </GridContainer>
       </div>
