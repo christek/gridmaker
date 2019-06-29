@@ -33,6 +33,7 @@ class GridApp extends React.Component {
     this.incrGap = this.incrGap.bind(this);
     this.incrWidth = this.incrWidth.bind(this);
     this.incrHeight = this.incrHeight.bind(this);
+    this.handleAutoFlow = this.handleAutoFlow.bind(this);
   }
 
   addItem() {
@@ -59,6 +60,10 @@ class GridApp extends React.Component {
   incrHeight() {
     let itemHeight = this.state.itemHeight + 1;
     this.setState({ itemHeight: itemHeight });
+  }
+
+  handleAutoFlow(event) {
+    this.setState({ gridAutoFlow: event.target.value });
   }
 
   render() {
@@ -88,12 +93,19 @@ class GridApp extends React.Component {
           value="height+"
           onClick={this.incrHeight}
         />
+        <select value={this.state.value} onChange={this.handleAutoFlow}>
+          <option value="row">row</option>
+          <option value="column">column</option>
+          <option value="row dense">row dense</option>
+          <option value="column dense">column dense</option>
+        </select>
         <GridContainer
           className="container"
           style={{
             gridTemplateColumns: gridTemplateColumns,
             gridTemplateRows: gridTemplateRows,
-            gridGap: this.state.gridGap
+            gridGap: this.state.gridGap,
+            gridAutoFlow: this.state.gridAutoFlow
           }}
         >
           {this.state.listItems.map(number => (
