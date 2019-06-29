@@ -23,13 +23,16 @@ class GridApp extends React.Component {
     this.state = {
       listItems: this.props.listItems,
       colCount: 4,
+      rowCount: 4,
       gridGap: 0,
-      itemWidth: 100
+      itemWidth: 100,
+      itemHeight: 100
     };
     this.addItem = this.addItem.bind(this);
     this.incrColumns = this.incrColumns.bind(this);
     this.incrGap = this.incrGap.bind(this);
     this.incrWidth = this.incrWidth.bind(this);
+    this.incrHeight = this.incrHeight.bind(this);
   }
 
   addItem() {
@@ -53,11 +56,20 @@ class GridApp extends React.Component {
     this.setState({ itemWidth: itemWidth });
   }
 
+  incrHeight() {
+    let itemHeight = this.state.itemHeight + 1;
+    this.setState({ itemHeight: itemHeight });
+  }
+
   render() {
     const GridContainer = styled("div");
     let gridTemplateColumns = "";
+    let gridTemplateRows = "";
     _.times(this.state.colCount, () => {
       gridTemplateColumns += " " + this.state.itemWidth + "px";
+    });
+    _.times(this.state.rowCount, () => {
+      gridTemplateRows += " " + this.state.itemHeight + "px";
     });
     return (
       <div>
@@ -70,10 +82,17 @@ class GridApp extends React.Component {
         <input key="2" type="button" value="cols+" onClick={this.incrColumns} />
         <input key="3" type="button" value="gap+" onClick={this.incrGap} />
         <input key="4" type="button" value="width+" onClick={this.incrWidth} />
+        <input
+          key="5"
+          type="button"
+          value="height+"
+          onClick={this.incrHeight}
+        />
         <GridContainer
           className="container"
           style={{
             gridTemplateColumns: gridTemplateColumns,
+            gridTemplateRows: gridTemplateRows,
             gridGap: this.state.gridGap
           }}
         >
