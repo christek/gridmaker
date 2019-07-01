@@ -2,58 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { styled } from "styletron-react";
 import _ from "lodash";
+import GridElement from "./GridElement.js";
 
 import "./styles.css";
 
 const numbers = [1, 2, 3, 4, 5, 6];
 
 // https://gridbyexample.com/examples/example1/
-
-class GridElement extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gridColumnStart: 0,
-      gridColumnEnd: 0
-    };
-    this.handleGridColumnStart = this.handleGridColumnStart.bind(this);
-    this.handleGridColumnEnd = this.handleGridColumnEnd.bind(this);
-  }
-
-  handleGridColumnStart(event) {
-    this.setState({ gridColumnStart: event.target.value });
-  }
-
-  handleGridColumnEnd(event) {
-    this.setState({ gridColumnEnd: event.target.value });
-  }
-
-  render() {
-    const GridElement = styled("div");
-    return (
-      <GridElement
-        key={this.props.number}
-        className="box"
-        style={{
-          gridColumnStart: this.state.gridColumnStart,
-          gridColumnEnd: this.state.gridColumnEnd
-        }}
-      >
-        <input
-          type="text"
-          value={this.state.gridColumnStart}
-          onChange={this.handleGridColumnStart}
-        />
-        <input
-          type="text"
-          value={this.state.gridColumnEnd}
-          onChange={this.handleGridColumnEnd}
-        />
-        {this.props.number}
-      </GridElement>
-    );
-  }
-}
 
 class GridApp extends React.Component {
   constructor(props) {
@@ -67,8 +22,8 @@ class GridApp extends React.Component {
       itemHeight: 100
     };
     this.addItem = this.addItem.bind(this);
-    this.incrColumns = this.incrColumns.bind(this);
-    this.incrGap = this.incrGap.bind(this);
+    this.incrDecrColumns = this.incrDecrColumns.bind(this);
+    this.incrDecrGap = this.incrDecrGap.bind(this);
     this.incrWidth = this.incrWidth.bind(this);
     this.incrHeight = this.incrHeight.bind(this);
     this.handleAutoFlow = this.handleAutoFlow.bind(this);
@@ -80,13 +35,25 @@ class GridApp extends React.Component {
     this.setState({ listItems: listItems });
   }
 
-  incrColumns() {
-    let colCount = this.state.colCount + 1;
+  incrDecrColumns(e, incr) {
+    let colCount;
+    if (incr) {
+      colCount = this.state.colCount + 1;
+    } else {
+      colCount = this.state.colCount - 1;
+    }
     this.setState({ colCount: colCount });
   }
 
-  incrGap() {
-    let gridGap = this.state.gridGap + 1;
+  incrDecrGap(e, incr) {
+    let gridGap;
+    if (incr) {
+      gridGap = this.state.gridGap + 1;
+    } else {
+      if (this.state.gridGap > 0) {
+        gridGap = this.state.gridGap - 1;
+      }
+    }
     this.setState({ gridGap: gridGap });
   }
 
@@ -122,11 +89,35 @@ class GridApp extends React.Component {
           value="add elements"
           onClick={this.addItem}
         />
-        <input key="2" type="button" value="cols+" onClick={this.incrColumns} />
-        <input key="3" type="button" value="gap+" onClick={this.incrGap} />
-        <input key="4" type="button" value="width+" onClick={this.incrWidth} />
+        <br />
         <input
-          key="5"
+          key="2"
+          type="button"
+          value="cols-"
+          onClick={e => this.incrDecrColumns(e, false)}
+        />
+        <input
+          key="3"
+          type="button"
+          value="cols+"
+          onClick={e => this.incrDecrColumns(e, true)}
+        />
+        <br />
+        <input
+          key="4"
+          type="button"
+          value="gap-"
+          onClick={e => this.incrDecrGap(e, false)}
+        />
+        <input
+          key="4"
+          type="button"
+          value="gap+"
+          onClick={e => this.incrDecrGap(e, true)}
+        />
+        <input key="6" type="button" value="width+" onClick={this.incrWidth} />
+        <input
+          key="6"
           type="button"
           value="height+"
           onClick={this.incrHeight}
