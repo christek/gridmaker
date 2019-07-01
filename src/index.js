@@ -57,8 +57,15 @@ class GridApp extends React.Component {
     this.setState({ gridGap: gridGap });
   }
 
-  incrWidth() {
-    let itemWidth = this.state.itemWidth + 1;
+  incrWidth(e, incr) {
+    let itemWidth;
+    if (incr) {
+      itemWidth = this.state.itemWidth + 1;
+    } else {
+      if (this.state.itemWidth > 0) {
+        itemWidth = this.state.itemWidth - 1;
+      }
+    }
     this.setState({ itemWidth: itemWidth });
   }
 
@@ -110,12 +117,25 @@ class GridApp extends React.Component {
           onClick={e => this.incrDecrGap(e, false)}
         />
         <input
-          key="4"
+          key="5"
           type="button"
           value="gap+"
           onClick={e => this.incrDecrGap(e, true)}
         />
-        <input key="6" type="button" value="width+" onClick={this.incrWidth} />
+        <br />
+        <input
+          key="6"
+          type="button"
+          value="width-"
+          onClick={e => this.incrWidth(e, false)}
+        />
+        <input
+          key="7"
+          type="button"
+          value="width+"
+          onClick={e => this.incrWidth(e, true)}
+        />
+        <br />
         <input
           key="6"
           type="button"
