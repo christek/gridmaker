@@ -137,7 +137,7 @@ export default class GridApp extends React.Component {
         />
         <br />
         <input
-          key="6"
+          key="8"
           type="button"
           value="height+"
           onClick={this.incrHeight}
