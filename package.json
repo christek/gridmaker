@@ -34,5 +34,8 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
+  },
+  "npm": {
+    "test":"jest"
   }
 }
