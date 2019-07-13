@@ -158,7 +158,7 @@ export default class GridApp extends React.Component {
           }}
         >
           {this.state.listItems.map(number => (
-            <GridElement className="gridElement" number={number} />
+            <GridElement className="gridElement" key={number} number={number} />
           ))}
         </GridContainer>
       </div>
