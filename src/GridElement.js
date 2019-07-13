@@ -43,7 +43,7 @@ export default class GridElement extends React.Component {
           value={this.state.gridColumnEnd}
           onChange={this.handleGridColumnEnd}
         />
-        {this.props.number}
+        <div className="myText">{this.props.number}</div>
       </GridElement>
     );
   }
