@@ -1,6 +1,9 @@
 import React from "react";
 import GridElement from "../GridElement.js";
 import { shallow, mount, render } from 'enzyme';
+var Adapter = require('enzyme-adapter-react-16');
+
+enzyme.configure({ adapter: new Adapter() });
 
 test("GridElement is rendered with default state", () => {
   const wrapper = mount(<GridElement number={1} />);

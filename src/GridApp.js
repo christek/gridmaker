@@ -98,12 +98,15 @@ export default class GridApp extends React.Component {
         />
         <br />
         <input
+          id="decrement-column"
           key="2"
+          className="foo"
           type="button"
           value="cols-"
           onClick={e => this.incrDecrColumns(e, false)}
         />
         <input
+          id="increment-column"
           key="3"
           type="button"
           value="cols+"
