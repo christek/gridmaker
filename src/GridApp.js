@@ -1,12 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { styled } from "styletron-react";
 import _ from "lodash";
 import GridElement from "./GridElement.js";
 
 import "./styles.css";
 
-const numbers = [1, 2, 3, 4, 5, 6];
 
 // https://gridbyexample.com/examples/example1/
 
@@ -31,7 +29,7 @@ export default class GridApp extends React.Component {
 
   addItem() {
     let listItems = this.state.listItems;
-    listItems.push(Math.floor(Math.random() * 10));
+    listItems.push(listItems.length + 1);
     this.setState({ listItems: listItems });
   }
 

@@ -1,8 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { styled } from "styletron-react";
-import _ from "lodash";
-import GridElement from "./GridElement.js";
 import GridApp from "./GridApp.js";
 
 import "./styles.css";
