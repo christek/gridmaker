@@ -18,7 +18,6 @@ test("GridApp adds item", () => {
   const wrapper = mount(<GridApp listItems={numbers} />);
   expect(wrapper.state().listItems.length).toEqual(6);
   wrapper.find("#add-item").simulate("click");
-  console.log(numbers.length);
   expect(wrapper.state().listItems.length).toEqual(7);
 });
 
