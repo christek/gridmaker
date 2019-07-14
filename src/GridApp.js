@@ -91,6 +91,7 @@ export default class GridApp extends React.Component {
     return (
       <div>
         <input
+          id="add-item"
           key="1"
           type="button"
           value="add elements"
@@ -114,12 +115,14 @@ export default class GridApp extends React.Component {
         />
         <br />
         <input
+          id="decrement-gap"
           key="4"
           type="button"
           value="gap-"
           onClick={e => this.incrDecrGap(e, false)}
         />
         <input
+          id="increment-gap"
           key="5"
           type="button"
           value="gap+"
@@ -127,12 +130,14 @@ export default class GridApp extends React.Component {
         />
         <br />
         <input
+          id="decrement-width"
           key="6"
           type="button"
           value="width-"
           onClick={e => this.incrWidth(e, false)}
         />
         <input
+          id="increment-width"
           key="7"
           type="button"
           value="width+"

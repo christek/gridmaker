@@ -1,9 +1,6 @@
 import React from "react";
 import GridElement from "../GridElement.js";
 import { shallow, mount, render } from 'enzyme';
-var Adapter = require('enzyme-adapter-react-16');
-
-enzyme.configure({ adapter: new Adapter() });
 
 test("GridElement is rendered with default state", () => {
   const wrapper = mount(<GridElement number={1} />);
@@ -14,7 +11,6 @@ test("GridElement is rendered with default state", () => {
 test("GridElement is rendered with correct content", () => {
   const wrapper = mount(<GridElement number={1} />);
   expect(wrapper.find('.myText').text()).toEqual('1');
-
   const wrapper2 = mount(<GridElement number={2} />);
   expect(wrapper2.find('.myText').text()).toEqual('2');
 });
