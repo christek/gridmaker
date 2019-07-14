@@ -21,30 +21,34 @@ test("GridApp adds item", () => {
   expect(wrapper.state().listItems.length).toEqual(7);
 });
 
-test("GridApp increments column count when clicking increment column", () => {
-  const wrapper = mount(<GridApp listItems={numbers} />);
-  expect(wrapper.state().colCount).toEqual(4);
-  wrapper.find("#increment-column").simulate("click");
-  expect(wrapper.state().colCount).toEqual(5);
+describe("GridApp column count", () => {
+  test("GridApp increments column count when clicking increment column", () => {
+    const wrapper = mount(<GridApp listItems={numbers} />);
+    expect(wrapper.state().colCount).toEqual(4);
+    wrapper.find("#increment-column").simulate("click");
+    expect(wrapper.state().colCount).toEqual(5);
+  });
+
+  test("GridApp increments column count when clicking decrement column", () => {
+    const wrapper = mount(<GridApp listItems={numbers} />);
+    expect(wrapper.state().colCount).toEqual(4);
+    wrapper.find("#decrement-column").simulate("click");
+    expect(wrapper.state().colCount).toEqual(3);
+  });
 });
 
-test("GridApp increments column count when clicking decrement column", () => {
-  const wrapper = mount(<GridApp listItems={numbers} />);
-  expect(wrapper.state().colCount).toEqual(4);
-  wrapper.find("#decrement-column").simulate("click");
-  expect(wrapper.state().colCount).toEqual(3);
-});
+describe("GridApp item width", () => {
+  test("GridApp increments item width when clicking increment item width", () => {
+    const wrapper = mount(<GridApp listItems={numbers} />);
+    expect(wrapper.state().itemWidth).toEqual(100);
+    wrapper.find("#increment-width").simulate("click");
+    expect(wrapper.state().itemWidth).toEqual(101);
+  });
 
-test("GridApp increments item width when clicking increment item width", () => {
-  const wrapper = mount(<GridApp listItems={numbers} />);
-  expect(wrapper.state().itemWidth).toEqual(100);
-  wrapper.find("#increment-width").simulate("click");
-  expect(wrapper.state().itemWidth).toEqual(101);
-});
-
-test("GridApp decrement item width when clicking decrement item width", () => {
-  const wrapper = mount(<GridApp listItems={numbers} />);
-  expect(wrapper.state().itemWidth).toEqual(100);
-  wrapper.find("#decrement-width").simulate("click");
-  expect(wrapper.state().itemWidth).toEqual(99);
+  test("GridApp decrements item width when clicking decrement item width", () => {
+    const wrapper = mount(<GridApp listItems={numbers} />);
+    expect(wrapper.state().itemWidth).toEqual(100);
+    wrapper.find("#decrement-width").simulate("click");
+    expect(wrapper.state().itemWidth).toEqual(99);
+  });
 });
