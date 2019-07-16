@@ -3,7 +3,6 @@ import { styled } from "styletron-react";
 import _ from "lodash";
 import GridElement from "./GridElement.js";
 
-import "./styles.css";
 
 
 // https://gridbyexample.com/examples/example1/

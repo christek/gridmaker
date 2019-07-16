@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "styletron-react";
 
-import "./styles.css";
 
 export default class GridElement extends React.Component {
   constructor(props) {
