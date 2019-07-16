@@ -32,7 +32,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "test": "jest"
   },
   "browserslist": [
     ">0.2%",
