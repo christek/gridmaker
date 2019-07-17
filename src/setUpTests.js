@@ -1,12 +1,4 @@
-// setup file
-var enzyme = require('enzyme');
-var Adapter = require('enzyme-adapter-react-16');
-
-enzyme.configure({ adapter: new Adapter() });
-
-test("setup", () => {
-    expect(true).toEqual(true);
-  });
-  
-
-export default undefined
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+    
+Enzyme.configure({ adapter: new Adapter() });
