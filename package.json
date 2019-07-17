@@ -44,7 +44,8 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setUpTests.js"
   },
   "npm": {
     "test": "jest"
