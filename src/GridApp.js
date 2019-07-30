@@ -85,14 +85,20 @@ export default class GridApp extends React.Component {
 
   handleWidths() {
     let units = ['px', '%', 'fr'];
+    let gridTemplateColumns = '';
+    let gridTemplateRows = '';
     _.times(this.state.colCount, () => {
-      let gridTemplateColumns = " " + this.state.itemWidth + units[this.state.itemUnitIndex];
+      gridTemplateColumns += " " + this.state.itemWidth + units[this.state.itemUnitIndex];
       this.setState({ gridTemplateColumns: gridTemplateColumns });
     });
     _.times(this.state.rowCount, () => {
-      let gridTemplateRows = " " + this.state.itemHeight + units[this.state.itemUnitIndex];
+      gridTemplateRows += " " + this.state.itemHeight + units[this.state.itemUnitIndex];
       this.setState({ gridTemplateRows: gridTemplateRows });
     });
+  }
+
+  componentDidMount() {
+    this.handleWidths();
   }
 
   render() {
@@ -104,13 +110,6 @@ export default class GridApp extends React.Component {
 
     return (
       <div>
-        <input
-          id="go"
-          key="0"
-          type="button"
-          value="GO"
-          onClick={e => this.handleWidths()}
-        />
         <input
           id="add-item"
           key="1"
