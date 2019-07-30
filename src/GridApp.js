@@ -3,20 +3,22 @@ import { styled } from "styletron-react";
 import _ from "lodash";
 import GridElement from "./GridElement.js";
 
-
-
 // https://gridbyexample.com/examples/example1/
 
 export default class GridApp extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       listItems: this.props.listItems,
       colCount: 4,
       rowCount: 4,
       gridGap: 0,
       itemWidth: 100,
-      itemHeight: 100
+      itemHeight: 100,
+      itemUnitIndex: 0,
+      gridTemplateColumns: '',
+      gridTemplateRows: '',
     };
     this.addItem = this.addItem.bind(this);
     this.incrDecrColumns = this.incrDecrColumns.bind(this);
@@ -24,6 +26,8 @@ export default class GridApp extends React.Component {
     this.incrWidth = this.incrWidth.bind(this);
     this.incrHeight = this.incrHeight.bind(this);
     this.handleAutoFlow = this.handleAutoFlow.bind(this);
+    this.handleUnitIndex = this.handleUnitIndex.bind(this);
+    this.handleWidths = this.handleWidths.bind(this);
   }
 
   addItem() {
@@ -75,18 +79,38 @@ export default class GridApp extends React.Component {
     this.setState({ gridAutoFlow: event.target.value });
   }
 
-  render() {
-    const GridContainer = styled("div");
-    let gridTemplateColumns = "";
-    let gridTemplateRows = "";
+  handleUnitIndex(event) {
+    this.setState({ itemUnitIndex: event.target.value });
+  }
+
+  handleWidths() {
+    let units = ['px', '%', 'fr'];
     _.times(this.state.colCount, () => {
-      gridTemplateColumns += " " + this.state.itemWidth + "px";
+      let gridTemplateColumns = " " + this.state.itemWidth + units[this.state.itemUnitIndex];
+      this.setState({ gridTemplateColumns: gridTemplateColumns });
     });
     _.times(this.state.rowCount, () => {
-      gridTemplateRows += " " + this.state.itemHeight + "px";
+      let gridTemplateRows = " " + this.state.itemHeight + units[this.state.itemUnitIndex];
+      this.setState({ gridTemplateRows: gridTemplateRows });
     });
+  }
+
+  render() {
+    const GridContainer = styled("div");
+
+    
+
+
+
     return (
       <div>
+        <input
+          id="go"
+          key="0"
+          type="button"
+          value="GO"
+          onClick={e => this.handleWidths()}
+        />
         <input
           id="add-item"
           key="1"
@@ -153,11 +177,16 @@ export default class GridApp extends React.Component {
           <option value="row dense">row dense</option>
           <option value="column dense">column dense</option>
         </select>
+        <select value={this.state.itemUnitIndex} onChange={this.handleUnitIndex}>
+          <option value="0">px</option>
+          <option value="1">%</option>
+          <option value="2">fr</option>
+        </select>        
         <GridContainer
           className="container"
           style={{
-            gridTemplateColumns: gridTemplateColumns,
-            gridTemplateRows: gridTemplateRows,
+            gridTemplateColumns: this.state.gridTemplateColumns,
+            gridTemplateRows: this.state.gridTemplateRows,
             gridGap: this.state.gridGap,
             gridAutoFlow: this.state.gridAutoFlow
           }}

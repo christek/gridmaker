@@ -52,3 +52,12 @@ describe("GridApp item width", () => {
     expect(wrapper.state().itemWidth).toEqual(99);
   });
 });
+
+describe("GridApp item units", () => {
+  test("GridApp has a default item width of px", () => {
+    const wrapper = mount(<GridApp listItems={numbers} />);
+    expect(wrapper.state().itemWidth).toEqual(100);
+    wrapper.find("#increment-width").simulate("click");
+    expect(wrapper.state().itemWidth).toEqual(101);
+  });
+});
