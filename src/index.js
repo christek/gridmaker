@@ -1,1 +1,1 @@
-import FormContainer from "./Container.jsx";
+import FormContainer from "./Container.js";
