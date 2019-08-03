@@ -17,7 +17,7 @@ const initialState = {
   gridTemplateRows: '',
   gridTemplateAreas: '', 
 };
-
+debugger;
 export default class GridApp extends React.Component {
   constructor(props) {
     super(props);
